@@ -1,9 +1,11 @@
+import { FC } from 'react'
 import { ToastContainer } from 'react-toastify'
+
 import './styles.css'
 
 const AUTO_CLOSE = 5000 * 1 // 5 seconds
 
-const ToastSetup = () => (
+const ToastSetup: FC = () => (
   <ToastContainer
     autoClose={AUTO_CLOSE}
     closeOnClick

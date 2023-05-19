@@ -1,3 +1,3 @@
-export declare type AppContextProps = {
-  children: React.ReactNode
-}
+import { PropsWithChildren } from 'react'
+
+export declare type AppContextProps = PropsWithChildren<>

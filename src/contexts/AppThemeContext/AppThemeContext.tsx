@@ -1,21 +1,24 @@
 import { CssBaseline, ThemeProvider as ThemeProviderMUI } from '@mui/material'
 import { motion } from 'framer-motion'
-import { createContext, useContext, useState } from 'react'
+import { FC, createContext, useContext, useState } from 'react'
 
+import { theme } from 'contexts/AppThemeContext/theme'
+import {
+  AppThemeContextType,
+  AppThemeProviderProps,
+} from 'contexts/AppThemeContext/types'
 import './globals.css'
-import { theme } from './theme'
-import type { AppThemeContextType, AppThemeProviderProps } from './types'
 
 const AppThemeContext = createContext<AppThemeContextType>({
   themeMode: 'light',
   toggleTheme: () => {},
 })
 
-const AppThemeProvider = ({ children }: AppThemeProviderProps) => {
-  const [themeMode, setTheme] = useState('light')
+const AppThemeProvider: FC<AppThemeProviderProps> = ({ children }) => {
+  const [themeMode, setThemeMode] = useState('light')
 
   const toggleTheme = () => {
-    setTheme(themeMode === 'light' ? 'dark' : 'light')
+    setThemeMode(themeMode === 'light' ? 'dark' : 'light')
   }
 
   return (

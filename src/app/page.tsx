@@ -1,11 +1,15 @@
 'use client'
 
+import { FC } from 'react'
+
 import { Navbar } from 'components/organisms/Navbar'
 
-export default function Home() {
+const Home: FC = () => {
   return (
     <main>
       <Navbar />
     </main>
   )
 }
+
+export default Home

@@ -1,12 +1,11 @@
 'use client'
 
-import { AppContext } from '@/contexts/AppContext'
+import { FC } from 'react'
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+import { AppContext } from 'contexts/AppContext'
+import { RootLayoutProps } from './types'
+
+const RootLayout: FC<RootLayoutProps> = ({ children }) => {
   return (
     <html lang="en">
       <body>
@@ -15,3 +14,5 @@ export default function RootLayout({
     </html>
   )
 }
+
+export default RootLayout
