@@ -1,7 +1,6 @@
-import { createContext, useContext, useState } from 'react'
-
 import { CssBaseline, ThemeProvider as ThemeProviderMUI } from '@mui/material'
 import { motion } from 'framer-motion'
+import { createContext, useContext, useState } from 'react'
 
 import './globals.css'
 import { theme } from './theme'
