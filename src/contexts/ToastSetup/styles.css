@@ -1,0 +1,8 @@
+@import 'react-toastify/dist/ReactToastify.css';
+
+:root {
+  --toastify-color-info: #3498db;
+  --toastify-color-success: #23c7a8;
+  --toastify-color-warning: #f1c40f;
+  --toastify-color-error: #ed145b;
+}
