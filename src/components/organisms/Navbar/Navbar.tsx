@@ -1,50 +1,83 @@
-import { Divider, Stack } from '@mui/material'
+import { Stack, Tab, Tabs } from '@mui/material'
 import { usePathname, useRouter } from 'next/navigation'
-import { FC } from 'react'
+import { FC, useEffect, useMemo, useState } from 'react'
 
 import { TooltipButton } from 'components/atoms/TooltipButton'
 import useWindowSizes from 'hooks/useWindowSizes'
-import { ROUTES } from 'utils/constants/routes'
+import { ROUTES, ROUTES_VALUES } from 'utils/constants/routes'
+import { routing } from 'utils/helpers/routing'
 
 import useStyles from './Navbar.styles'
 
 const Navbar: FC = () => {
   const currentPathname = usePathname()
   const router = useRouter()
-  const { isDesktop } = useWindowSizes()
 
+  const { isDesktop } = useWindowSizes()
   const classes = useStyles()
 
+  const [serviceTab, setServiceTab] = useState(ROUTES.get('HOME')?.pathname)
+
+  const HANDLERS = useMemo(
+    () => ({
+      handleChangeTab: (newTab: string | undefined) => setServiceTab(newTab),
+    }),
+    []
+  )
+
+  useEffect(() => {
+    HANDLERS.handleChangeTab(
+      routing.getByPathname(currentPathname)?.pathname ||
+        ROUTES.get('HOME')?.pathname
+    )
+  }, [HANDLERS, currentPathname])
+
   return (
-    <Stack
-      component="nav"
-      divider={
-        <Divider flexItem orientation={isDesktop ? 'horizontal' : 'vertical'} />
-      }
-      sx={{ ...classes.root }}
-    >
-      {Array.from(ROUTES).map(([route, { icon: Icon, pathname, title }]) => (
-        <TooltipButton
-          key={title}
-          buttonProps={{
-            onClick: () => router.push(pathname),
-            'aria-current': pathname === currentPathname ? 'page' : undefined,
-            'aria-label': title,
-            'aria-selected': pathname === currentPathname,
-          }}
-          tooltipProps={{
-            arrow: true,
-            placement: isDesktop ? 'right' : 'bottom',
-            title,
-            'aria-valuetext': title,
-          }}
-        >
-          <Icon
-            color={pathname === currentPathname ? 'primary' : 'inherit'}
-            sx={{ ...classes.icon }}
+    <Stack component="nav" sx={{ ...classes.root }}>
+      <Tabs
+        allowScrollButtonsMobile
+        orientation={isDesktop ? 'vertical' : 'horizontal'}
+        scrollButtons="auto"
+        TabIndicatorProps={{ sx: { ...classes.tabIndicator } }}
+        value={serviceTab}
+        variant={isDesktop ? 'fullWidth' : 'scrollable'}
+      >
+        {Array.from(ROUTES_VALUES).map(({ icon: Icon, pathname, title }) => (
+          <Tab
+            key={pathname}
+            component="div"
+            disableRipple
+            icon={
+              <TooltipButton
+                key={title}
+                buttonProps={{
+                  onClick: () => {
+                    HANDLERS.handleChangeTab(pathname)
+                    router.push(pathname)
+                  },
+                  'aria-current':
+                    pathname === currentPathname ? 'page' : undefined,
+                  'aria-label': title,
+                  'aria-selected': pathname === currentPathname,
+                }}
+                tooltipProps={{
+                  'aria-valuetext': title,
+                  arrow: true,
+                  placement: isDesktop ? 'right' : 'bottom',
+                  title,
+                }}
+              >
+                <Icon
+                  color={pathname === currentPathname ? 'primary' : 'inherit'}
+                  sx={{ ...classes.icon }}
+                />
+              </TooltipButton>
+            }
+            sx={{ ...classes.tab }}
+            value={pathname}
           />
-        </TooltipButton>
-      ))}
+        ))}
+      </Tabs>
     </Stack>
   )
 }

@@ -1,8 +1,10 @@
 import { ROUTES_VALUES } from 'utils/constants/routes'
 
 const routing = {
-  existsByName: (pathname: string) =>
-    ROUTES_VALUES.some(route => route.pathname === pathname),
+  existsByPathname: (pathname: string) =>
+    routing.getByPathname(pathname) !== undefined,
+  getByPathname: (pathname: string) =>
+    ROUTES_VALUES.find(route => route.pathname === pathname),
 }
 
 export { routing }

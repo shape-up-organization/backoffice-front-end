@@ -8,17 +8,12 @@ export default makeStyles(theme => {
   const rootDesktop: SxProps = {
     height: '100vh',
     justifyContent: 'center',
-    px: 2,
-    rowGap: 1,
     width: 'fit-content',
   }
 
   const rootMobile: SxProps = {
-    columnGap: 1,
     flexDirection: 'row',
-    height: 'fit-content',
     justifyContent: 'center',
-    py: 1,
     width: '100vw',
   }
 
@@ -33,6 +28,18 @@ export default makeStyles(theme => {
       zIndex: theme.zIndex.appBar,
 
       ...(isUpMd ? rootDesktop : rootMobile),
+    },
+    tab: {
+      cursor: 'default',
+      height: '100%',
+      justifyContent: 'center',
+      my: 1,
+      p: 0,
+    },
+    tabIndicator: {
+      left: 0,
+      width: 4,
+      height: 3,
     },
   }
 })
