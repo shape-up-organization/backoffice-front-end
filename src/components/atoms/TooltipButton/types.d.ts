@@ -5,7 +5,7 @@ type TooltipPropsMod = Omit<TooltipProps, 'children' | 'title'> & {
   title?: string
 }
 
-export declare type TooltipButtonProps = PropsWithChildren<{
+export type TooltipButtonProps = PropsWithChildren<{
   buttonProps?: IconButtonProps
   tooltipProps?: TooltipPropsMod
 }>
