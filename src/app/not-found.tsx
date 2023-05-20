@@ -21,7 +21,7 @@ const NotFound: FC = () => {
         tooltipProps={{
           placement: 'right',
           sx: { left: 16, position: 'fixed', top: 16 },
-          // title: 'Go back',
+          title: 'Go back',
         }}
       >
         <ArrowBackRoundedIcon />
