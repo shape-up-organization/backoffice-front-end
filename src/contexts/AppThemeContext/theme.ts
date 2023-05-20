@@ -6,13 +6,6 @@ const ubuntu = Ubuntu({
   weight: ['300', '400', '500', '700'],
 })
 
-declare module '@mui/material' {
-  interface PaletteOptions {
-    disabled?: string
-    link?: string
-  }
-}
-
 export const theme = createTheme({
   palette: {
     mode: 'light',
@@ -24,6 +17,7 @@ export const theme = createTheme({
     error: {
       main: '#ED145B',
     },
+    link: '#0069be',
     primary: {
       contrastText: '#181818',
       dark: '#25D6B6',
