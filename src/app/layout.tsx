@@ -1,31 +1,37 @@
 'use client'
 
-import { Box, useMediaQuery } from '@mui/material'
+import { Stack, Typography } from '@mui/material'
 import { FC } from 'react'
 
 import { RootLayoutProps } from 'app/types'
 import { Navbar } from 'components/organisms/Navbar'
 import { AppContext } from 'contexts/AppContext'
-import { theme } from 'contexts/AppThemeContext/theme'
+import useWindowSizes from 'hooks/useWindowSizes'
+
+import useStyles from './RootLayout.styles'
 
 const RootLayout: FC<RootLayoutProps> = ({ children }) => {
-  const isUpMd = useMediaQuery(theme.breakpoints.up('md'))
+  const { isDesktop } = useWindowSizes()
+  const classes = useStyles()
 
   return (
     <html lang="en">
-      <body>
-        <AppContext>
-          <Box
-            display="flex"
-            flexDirection={isUpMd ? 'row' : 'column'}
-            height="100vh"
-            width="100vw"
+      <AppContext>
+        <Navbar />
+        <Stack component="main" sx={{ ...classes.main }}>
+          <Typography
+            component="h1"
+            role="heading"
+            sx={{ ...classes.title }}
+            variant={isDesktop ? 'h3' : 'h4'}
           >
-            <Navbar />
+            ShapeUp
+          </Typography>
+          <Stack component="section" sx={{ ...classes.section }}>
             {children}
-          </Box>
-        </AppContext>
-      </body>
+          </Stack>
+        </Stack>
+      </AppContext>
     </html>
   )
 }
