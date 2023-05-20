@@ -1,8 +1,9 @@
 import { Stack, Tab, Tabs } from '@mui/material'
-import { usePathname, useRouter } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 import { FC, useEffect, useMemo, useState } from 'react'
 
 import { TooltipButton } from 'components/atoms/TooltipButton'
+import useNavigation from 'hooks/useNavigation'
 import useWindowSizes from 'hooks/useWindowSizes'
 import { ROUTES, ROUTES_VALUES } from 'utils/constants/routes'
 import { routing } from 'utils/helpers/routing'
@@ -11,8 +12,8 @@ import useStyles from './Navbar.styles'
 
 const Navbar: FC = () => {
   const currentPathname = usePathname()
-  const router = useRouter()
 
+  const { changeRoute, currentRoute } = useNavigation()
   const { isDesktop } = useWindowSizes()
   const classes = useStyles()
 
@@ -53,7 +54,7 @@ const Navbar: FC = () => {
                 buttonProps={{
                   onClick: () => {
                     HANDLERS.handleChangeTab(pathname)
-                    router.push(pathname)
+                    changeRoute(pathname)
                   },
                   'aria-current':
                     pathname === currentPathname ? 'page' : undefined,

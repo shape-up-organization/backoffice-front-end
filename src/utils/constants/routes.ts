@@ -3,21 +3,21 @@ import HomeRoundedIcon from '@mui/icons-material/HomeRounded'
 
 import { MuiIcon } from 'types/muiIcon'
 
-const ROUTE_KEYS = ['HOME', 'QUESTS'] as const
-
-export type RoutesMap = {
+export type RouteMap = {
   icon: MuiIcon
   title: string
   pathname: string
 }
 
-const ROUTES: ReadonlyMap<(typeof ROUTE_KEYS)[number], RoutesMap> = new Map([
+export type Route = 'HOME' | 'QUESTS'
+
+const ROUTES: ReadonlyMap<'HOME' | 'QUESTS', RouteMap> = new Map([
   [
     'HOME',
     {
       icon: HomeRoundedIcon,
       pathname: '/',
-      title: 'Home',
+      title: 'ShapeUp',
     },
   ],
   [

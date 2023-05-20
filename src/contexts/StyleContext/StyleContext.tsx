@@ -1,9 +1,9 @@
 import { CssBaseline, ThemeProvider as ThemeProviderMUI } from '@mui/material'
 import { motion } from 'framer-motion'
-import { FC, createContext, useContext, useState } from 'react'
+import { FC, createContext, useContext, useMemo, useState } from 'react'
 
 import { theme } from 'contexts/StyleContext/theme'
-import {
+import type {
   StyleContextType,
   StyleProviderProps,
 } from 'contexts/StyleContext/types'
@@ -19,14 +19,16 @@ const StyleContext = createContext<StyleContextType>({
 const StyleProvider: FC<StyleProviderProps> = ({ children }) => {
   const { isDesktop } = useWindowSizes()
 
-  const [themeMode, setThemeMode] = useState('light')
+  const [themeMode, setThemeMode] = useState<'light' | 'dark'>('light')
 
   const toggleTheme = () => {
     setThemeMode(themeMode === 'light' ? 'dark' : 'light')
   }
 
+  const values = useMemo(() => ({ themeMode, toggleTheme }), [themeMode])
+
   return (
-    <StyleContext.Provider value={{ themeMode, toggleTheme }}>
+    <StyleContext.Provider value={values}>
       <ThemeProviderMUI theme={theme}>
         <CssBaseline />
         <motion.body
