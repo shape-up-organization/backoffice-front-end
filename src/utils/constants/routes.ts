@@ -1,21 +1,29 @@
 import CrisisAlertRoundedIcon from '@mui/icons-material/CrisisAlertRounded'
 import HomeRoundedIcon from '@mui/icons-material/HomeRounded'
 
-const ROUTES = new Map([
+import { MuiIcon } from 'types/muiIcon'
+
+export type RoutesMap = {
+  icon: MuiIcon
+  title: string
+  pathname: string
+}
+
+const ROUTES = new Map<string, RoutesMap>([
   [
-    'HOME',
+    'HOME' as const,
     {
       icon: HomeRoundedIcon,
-      name: 'Home',
       pathname: '/',
+      title: 'Home',
     },
   ],
   [
-    'QUESTS',
+    'QUESTS' as const,
     {
       icon: CrisisAlertRoundedIcon,
-      name: 'Quests',
       pathname: '/quests',
+      title: 'Quests',
     },
   ],
 ])

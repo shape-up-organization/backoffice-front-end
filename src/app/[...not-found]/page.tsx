@@ -1,8 +1,33 @@
 'use client'
 
-import { notFound } from 'next/navigation'
+import { Stack, Typography } from '@mui/material'
+import Image from 'next/image'
 import { FC } from 'react'
 
-const NotFoundCatchAll: FC = () => notFound()
+import notFoundWithNumber from 'public/not-found-with-number.svg'
 
-export default NotFoundCatchAll
+import useStyles from './NotFound.styles'
+
+const NotFound: FC = () => {
+  const classes = useStyles()
+
+  return (
+    <Stack sx={{ ...classes.root }}>
+      <Typography
+        component="h1"
+        role="heading"
+        sx={{ ...classes.title }}
+        variant="h5"
+      >
+        Page not found
+      </Typography>
+      <Image
+        alt="Not found image"
+        src={notFoundWithNumber}
+        style={{ maxWidth: '100%', objectFit: 'contain' }}
+      />
+    </Stack>
+  )
+}
+
+export default NotFound
