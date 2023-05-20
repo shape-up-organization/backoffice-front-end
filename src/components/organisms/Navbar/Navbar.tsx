@@ -35,12 +35,18 @@ const Navbar: FC = () => {
             'aria-selected': pathname === currentPathname,
           }}
           tooltipProps={{
+            arrow: true,
             placement: isUpMd ? 'right' : 'bottom',
             title: name,
             'aria-valuetext': name,
           }}
         >
-          <Icon color={pathname === currentPathname ? 'primary' : 'inherit'} />
+          <Icon
+            color={pathname === currentPathname ? 'primary' : 'inherit'}
+            sx={{
+              ...classes.icon,
+            }}
+          />
         </TooltipButton>
       ))}
     </Stack>
