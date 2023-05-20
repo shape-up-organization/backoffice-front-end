@@ -1,6 +1,6 @@
 import { SxProps, Theme } from '@mui/material'
 
-import { theme } from 'contexts/AppThemeContext/theme'
+import { theme } from 'contexts/StyleContext/theme'
 
 interface StylesObject {
   [key: string]: SxProps

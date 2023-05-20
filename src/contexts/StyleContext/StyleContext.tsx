@@ -2,20 +2,20 @@ import { CssBaseline, ThemeProvider as ThemeProviderMUI } from '@mui/material'
 import { motion } from 'framer-motion'
 import { FC, createContext, useContext, useState } from 'react'
 
-import { theme } from 'contexts/AppThemeContext/theme'
+import { theme } from 'contexts/StyleContext/theme'
 import {
-  AppThemeContextType,
-  AppThemeProviderProps,
-} from 'contexts/AppThemeContext/types'
+  StyleContextType,
+  StyleProviderProps,
+} from 'contexts/StyleContext/types'
 
 import './globals.scss'
 
-const AppThemeContext = createContext<AppThemeContextType>({
+const StyleContext = createContext<StyleContextType>({
   themeMode: 'light',
   toggleTheme: () => {},
 })
 
-const AppThemeProvider: FC<AppThemeProviderProps> = ({ children }) => {
+const StyleProvider: FC<StyleProviderProps> = ({ children }) => {
   const [themeMode, setThemeMode] = useState('light')
 
   const toggleTheme = () => {
@@ -23,7 +23,7 @@ const AppThemeProvider: FC<AppThemeProviderProps> = ({ children }) => {
   }
 
   return (
-    <AppThemeContext.Provider value={{ themeMode, toggleTheme }}>
+    <StyleContext.Provider value={{ themeMode, toggleTheme }}>
       <ThemeProviderMUI theme={theme}>
         <CssBaseline />
         <motion.div
@@ -41,10 +41,10 @@ const AppThemeProvider: FC<AppThemeProviderProps> = ({ children }) => {
           {children}
         </motion.div>
       </ThemeProviderMUI>
-    </AppThemeContext.Provider>
+    </StyleContext.Provider>
   )
 }
 
-const useAppTheme = () => useContext(AppThemeContext)
+const useStyle = () => useContext(StyleContext)
 
-export { AppThemeProvider, AppThemeContext, useAppTheme }
+export { StyleProvider, StyleContext, useStyle }
