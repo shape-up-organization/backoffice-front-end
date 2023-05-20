@@ -1,3 +1,3 @@
 import { PropsWithChildren } from 'react'
 
-export declare type AppContextProps = PropsWithChildren<>
+export type AppContextProps = PropsWithChildren<>

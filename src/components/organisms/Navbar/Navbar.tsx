@@ -21,9 +21,7 @@ const Navbar: FC = () => {
       divider={
         <Divider flexItem orientation={isUpMd ? 'horizontal' : 'vertical'} />
       }
-      sx={{
-        ...classes.root,
-      }}
+      sx={{ ...classes.root }}
     >
       {Array.from(ROUTES).map(([route, { icon: Icon, name, pathname }]) => (
         <TooltipButton
@@ -43,9 +41,7 @@ const Navbar: FC = () => {
         >
           <Icon
             color={pathname === currentPathname ? 'primary' : 'inherit'}
-            sx={{
-              ...classes.icon,
-            }}
+            sx={{ ...classes.icon }}
           />
         </TooltipButton>
       ))}

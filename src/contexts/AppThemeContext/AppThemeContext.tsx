@@ -7,7 +7,8 @@ import {
   AppThemeContextType,
   AppThemeProviderProps,
 } from 'contexts/AppThemeContext/types'
-import './globals.css'
+
+import './globals.scss'
 
 const AppThemeContext = createContext<AppThemeContextType>({
   themeMode: 'light',

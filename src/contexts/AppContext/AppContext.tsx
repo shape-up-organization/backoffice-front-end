@@ -2,11 +2,11 @@ import { FC } from 'react'
 
 import { AppContextProps } from 'contexts/AppContext/types'
 import { AppThemeProvider } from 'contexts/AppThemeContext'
-import { ToastSetup } from 'contexts/ToastSetup'
+import { Toast } from 'contexts/Toast'
 
 const AppContext: FC<AppContextProps> = ({ children }) => (
   <AppThemeProvider>
-    <ToastSetup />
+    <Toast />
     {children}
   </AppThemeProvider>
 )

@@ -1,1 +1,1 @@
-export declare type Pathname = '/' | '/quest'
+export type Pathname = '/' | '/quest'
