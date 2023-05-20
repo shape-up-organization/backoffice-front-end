@@ -23,20 +23,20 @@ const Navbar: FC = () => {
       }
       sx={{ ...classes.root }}
     >
-      {Array.from(ROUTES).map(([route, { icon: Icon, name, pathname }]) => (
+      {Array.from(ROUTES).map(([route, { icon: Icon, pathname, title }]) => (
         <TooltipButton
-          key={route}
+          key={title}
           buttonProps={{
             onClick: () => router.push(pathname),
             'aria-current': pathname === currentPathname ? 'page' : undefined,
-            'aria-label': name,
+            'aria-label': title,
             'aria-selected': pathname === currentPathname,
           }}
           tooltipProps={{
             arrow: true,
             placement: isDesktop ? 'right' : 'bottom',
-            title: name,
-            'aria-valuetext': name,
+            title,
+            'aria-valuetext': title,
           }}
         >
           <Icon
