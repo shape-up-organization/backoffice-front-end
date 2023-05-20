@@ -30,8 +30,15 @@ const Navbar: FC = () => {
           key={route}
           buttonProps={{
             onClick: () => router.push(pathname),
+            'aria-current': pathname === currentPathname ? 'page' : undefined,
+            'aria-label': name,
+            'aria-selected': pathname === currentPathname,
           }}
-          tooltipProps={{ placement: isUpMd ? 'right' : 'bottom', title: name }}
+          tooltipProps={{
+            placement: isUpMd ? 'right' : 'bottom',
+            title: name,
+            'aria-valuetext': name,
+          }}
         >
           <Icon color={pathname === currentPathname ? 'primary' : 'inherit'} />
         </TooltipButton>
