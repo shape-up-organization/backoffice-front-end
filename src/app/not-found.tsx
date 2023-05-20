@@ -28,10 +28,10 @@ const NotFound: FC = () => {
       </TooltipButton>
       <Stack
         alignItems="center"
-        height="100vh"
+        height="100%"
         justifyContent="center"
         px={2}
-        width="100vw"
+        width="100%"
       >
         <Typography
           align="center"

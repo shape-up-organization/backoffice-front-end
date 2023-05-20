@@ -8,10 +8,11 @@ import { ROUTES } from 'utils/constants/routes'
 import useStyles from './Navbar.styles'
 
 const Navbar: FC = () => {
-  const theme = useTheme()
-  const router = useRouter()
   const currentPathname = usePathname()
+  const router = useRouter()
+  const theme = useTheme()
   const isUpMd = useMediaQuery(theme.breakpoints.up('md'))
+
   const classes = useStyles()
 
   return (

@@ -20,4 +20,6 @@ const ROUTES = new Map([
   ],
 ])
 
-export { ROUTES }
+const ROUTES_VALUES = Array.from(ROUTES.values())
+
+export { ROUTES, ROUTES_VALUES }
