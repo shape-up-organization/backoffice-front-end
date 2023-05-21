@@ -5,9 +5,11 @@ import { FC } from 'react'
 
 import { RootLayoutProps } from 'app/types'
 import { Navbar } from 'components/organisms/Navbar'
-import { AppContext } from 'contexts/AppContext'
+import { Contexts } from 'contexts/Contexts'
 import useNavigation from 'hooks/useNavigation'
 import useWindowSizes from 'hooks/useWindowSizes'
+
+import { BackendProviders } from 'api/providers/BackendProviders'
 
 import useStyles from './RootLayout.styles'
 
@@ -18,23 +20,25 @@ const RootLayout: FC<RootLayoutProps> = ({ children }) => {
 
   return (
     <html lang="en">
-      <AppContext>
-        <Navbar />
-        <Stack component="main" sx={{ ...classes.main }}>
-          <Typography
-            component="h1"
-            role="heading"
-            id="title"
-            sx={{ ...classes.title }}
-            variant={isDesktop ? 'h3' : 'h4'}
-          >
-            {currentRoute?.title}
-          </Typography>
-          <Stack component="section" sx={{ ...classes.section }}>
-            {children}
+      <BackendProviders>
+        <Contexts>
+          <Navbar />
+          <Stack component="main" sx={{ ...classes.main }}>
+            <Typography
+              component="h1"
+              role="heading"
+              id="title"
+              sx={{ ...classes.title }}
+              variant={isDesktop ? 'h3' : 'h4'}
+            >
+              {currentRoute?.title}
+            </Typography>
+            <Stack component="section" sx={{ ...classes.section }}>
+              {children}
+            </Stack>
           </Stack>
-        </Stack>
-      </AppContext>
+        </Contexts>
+      </BackendProviders>
     </html>
   )
 }
