@@ -1,7 +1,7 @@
 import { createTheme } from '@mui/material'
 import { Ubuntu } from 'next/font/google'
 
-const ubuntu = Ubuntu({
+export const ubuntu = Ubuntu({
   subsets: ['latin'],
   weight: ['300', '400', '500', '700'],
 })

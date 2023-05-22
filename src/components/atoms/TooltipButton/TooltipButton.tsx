@@ -10,9 +10,21 @@ const TooltipButton: FC<TooltipButtonProps> = ({
 }) => {
   const { title = '', ...restTooltipProps } = tooltipProps
 
+  const spanWarningCorrection = {
+    disabled: buttonProps?.disabled || false,
+    component: buttonProps?.disabled ? 'div' : undefined,
+    onClick: buttonProps?.disabled ? undefined : buttonProps?.onClick,
+  }
+
   return (
-    <Tooltip title={title} {...restTooltipProps}>
-      <IconButton {...buttonProps}>{children}</IconButton>
+    <Tooltip
+      title={buttonProps?.disabled ? '' : title}
+      {...restTooltipProps}
+      suppressContentEditableWarning
+    >
+      <IconButton {...buttonProps} {...spanWarningCorrection}>
+        {children}
+      </IconButton>
     </Tooltip>
   )
 }

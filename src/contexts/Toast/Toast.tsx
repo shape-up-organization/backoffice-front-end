@@ -1,6 +1,7 @@
 import { FC } from 'react'
 import { ToastContainer } from 'react-toastify'
 
+import { ubuntu } from 'contexts/StyleContext/theme'
 import './styles.scss'
 
 const AUTO_CLOSE = 5000 * 1 // 5 seconds
@@ -16,6 +17,9 @@ const Toast: FC = () => (
     position="bottom-left"
     rtl={false}
     theme="colored"
+    style={{
+      fontFamily: ubuntu.style.fontFamily,
+    }}
   />
 )
 

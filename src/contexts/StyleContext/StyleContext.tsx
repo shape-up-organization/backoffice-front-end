@@ -25,7 +25,8 @@ const StyleProvider: FC<StyleProviderProps> = ({ children }) => {
     setThemeMode(themeMode === 'light' ? 'dark' : 'light')
   }
 
-  const values = useMemo(() => ({ themeMode, toggleTheme }), [themeMode])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const values = useMemo(() => ({ themeMode, toggleTheme }), [])
 
   return (
     <StyleContext.Provider value={values}>

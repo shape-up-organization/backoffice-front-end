@@ -3,13 +3,12 @@
 import { Stack, Typography } from '@mui/material'
 import { FC } from 'react'
 
+import { BackendProviders } from 'api/providers/BackendProviders'
 import { RootLayoutProps } from 'app/types'
 import { Navbar } from 'components/organisms/Navbar'
 import { Contexts } from 'contexts/Contexts'
 import useNavigation from 'hooks/useNavigation'
 import useWindowSizes from 'hooks/useWindowSizes'
-
-import { BackendProviders } from 'api/providers/BackendProviders'
 
 import useStyles from './RootLayout.styles'
 
@@ -20,8 +19,8 @@ const RootLayout: FC<RootLayoutProps> = ({ children }) => {
 
   return (
     <html lang="en">
-      <BackendProviders>
-        <Contexts>
+      <Contexts>
+        <BackendProviders>
           <Navbar />
           <Stack component="main" sx={{ ...classes.main }}>
             <Typography
@@ -37,8 +36,8 @@ const RootLayout: FC<RootLayoutProps> = ({ children }) => {
               {children}
             </Stack>
           </Stack>
-        </Contexts>
-      </BackendProviders>
+        </BackendProviders>
+      </Contexts>
     </html>
   )
 }

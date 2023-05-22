@@ -7,7 +7,7 @@ interface CustomError {
 
 const tryCatch = async (
   url: RequestInfo,
-  options: RequestInit
+  options?: RequestInit
 ): Promise<Response | CustomError> => {
   try {
     const res = await fetcher(url, options)
