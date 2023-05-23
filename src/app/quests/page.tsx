@@ -181,6 +181,7 @@ const Quests: FC = () => {
         return
       }
 
+      refetch()
       toast.handleToast({
         message: 'Quest created successfully',
         type: 'success',
@@ -204,7 +205,6 @@ const Quests: FC = () => {
       }
 
       refetch()
-
       toast.handleToast({
         message: 'Quest updated successfully',
         type: 'success',
@@ -223,6 +223,7 @@ const Quests: FC = () => {
           return
         }
 
+        refetch()
         toast.handleToast({
           message: 'Quest removed successfully',
           type: 'success',
@@ -244,6 +245,7 @@ const Quests: FC = () => {
 
         await FUNCTIONS.editQuest(payload)
         HANDLERS.handleCloseExercises()
+        refetch()
       }
     },
   }
