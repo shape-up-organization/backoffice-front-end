@@ -22,8 +22,8 @@ const SectionCard: FC<SectionCardProps> = ({ icon: Icon, pathname, title }) => {
       aria-label={`Button that redirects to '${title}'`}
       component={ButtonBase}
       focusRipple
-      role="button"
       onClick={HANDLERS.handleClickCard}
+      role="button"
       sx={{ ...classes.root }}
       tabIndex={0}
       type="button"

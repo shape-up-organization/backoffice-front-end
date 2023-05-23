@@ -3,13 +3,7 @@ import { FC } from 'react'
 
 import { ReactQueryProviderProps } from './types'
 
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      suspense: true,
-    },
-  },
-})
+const queryClient = new QueryClient()
 
 const ReactQueryProvider: FC<ReactQueryProviderProps> = ({ children }) => (
   <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>

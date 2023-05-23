@@ -1,11 +1,11 @@
 import { FC } from 'react'
 
-import { SWRProvider } from 'api/providers/SWRProvider'
-
+import { ReactQueryProvider } from 'api/providers/ReactQueryProvider'
 import { BackendProvidersProps } from './types'
 
 const BackendProviders: FC<BackendProvidersProps> = ({ children }) => (
-  <SWRProvider>{children}</SWRProvider>
+  // <SWRProvider>{children}</SWRProvider>
+  <ReactQueryProvider>{children}</ReactQueryProvider>
 )
 
 export { BackendProviders }

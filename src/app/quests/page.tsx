@@ -35,12 +35,10 @@ import { ChangeEvent, FC, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { TransitionGroup } from 'react-transition-group'
 
-import { useSWR } from 'api/libs/useSWR'
 import { Quest } from 'api/services/quests/types'
 import { TooltipButton } from 'components/atoms/TooltipButton'
 import useWindowSizes from 'hooks/useWindowSizes'
 import { TableCell, TableRow } from 'types/tableRow'
-import { API_ENDPOINTS } from 'utils/constants/apiEndpoints'
 
 import { FormControl, InputLabel, MenuItem } from '@mui/material'
 import useToast from 'hooks/useToast'
@@ -135,15 +133,16 @@ const staticColumns: GridColDef[] = [
 ]
 
 const Quests: FC = () => {
-  const { data: quests, isLoading } = useSWR<Quest[] | null>(
-    API_ENDPOINTS.QUESTS,
-    {
-      suspense: true,
-      fallbackData: null,
-    }
-  )
+  const {
+    data: quests,
+    isLoading,
+    refetch,
+    isFetching,
+  } = fetchQuests.useQuests()
+
   const {
     formState: { errors },
+    getValues,
     handleSubmit,
     register,
     reset,
@@ -164,15 +163,14 @@ const Quests: FC = () => {
   const [openExercises, setOpenExercises] = useState(false)
   const [openForm, setOpenForm] = useState(false)
   const [openDelete, setOpenDelete] = useState(false)
-  const [isLoadingRequest, setIsLoadingRequest] = useState(false)
+
+  const { category: categoryHookForm, classification: classificationHookForm } =
+    getValues()
 
   const FUNCTIONS = {
     createQuest: async (values: QuestForm) => {
-      setIsLoadingRequest(true)
-
       const payload = values
       const res = await fetchQuests.create(payload)
-      setIsLoadingRequest(false)
       HANDLERS.handleCloseForm()
 
       if (res.status) {
@@ -189,15 +187,12 @@ const Quests: FC = () => {
       })
     },
     editQuest: async (values: QuestForm) => {
-      setIsLoadingRequest(true)
-
       const payload: Quest = {
         ...values,
         id: selectedQuest?.id || '',
       }
 
       const res = await fetchQuests.update(payload)
-      setIsLoadingRequest(false)
       HANDLERS.handleCloseForm()
 
       if (res.status) {
@@ -208,6 +203,8 @@ const Quests: FC = () => {
         return
       }
 
+      refetch()
+
       toast.handleToast({
         message: 'Quest updated successfully',
         type: 'success',
@@ -215,10 +212,7 @@ const Quests: FC = () => {
     },
     deletePack: async () => {
       if (selectedQuest) {
-        setIsLoadingRequest(true)
-
         const res = await fetchQuests.remove(selectedQuest.id)
-        setIsLoadingRequest(false)
         HANDLERS.handleCloseDelete()
 
         if (res.status !== 200) {
@@ -632,7 +626,7 @@ const Quests: FC = () => {
                       shouldTouch: true,
                     })
                   }
-                  value={selectedQuest?.category}
+                  value={categoryHookForm || selectedQuest?.category}
                 >
                   {QUESTS_CATEGORIES.map(
                     ({ color, icon: Icon, name, value }) => (
@@ -731,7 +725,9 @@ const Quests: FC = () => {
                       shouldTouch: true,
                     })
                   }
-                  value={selectedQuest?.classification}
+                  value={
+                    classificationHookForm || selectedQuest?.classification
+                  }
                 >
                   {CLASSIFICATIONS.map(({ color, colorText, value }) => (
                     <MenuItem key={value} value={value}>
