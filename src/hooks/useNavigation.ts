@@ -20,7 +20,7 @@ const useNavigation = () => {
     }
 
     setCurrentRoute(newRoute)
-    document.title = `Backoffice | ${newRoute?.title || '404'}`
+    document.title = newRoute?.title ? 'Backoffice' : '404'
 
     const title = document.querySelector('#title')
     if (title) title.innerHTML = newRoute?.title || ''

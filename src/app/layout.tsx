@@ -10,7 +10,6 @@ import { Contexts } from 'contexts/Contexts'
 import useNavigation from 'hooks/useNavigation'
 import useWindowSizes from 'hooks/useWindowSizes'
 
-import Head from 'next/head'
 import useStyles from './RootLayout.styles'
 
 const RootLayout: FC<RootLayoutProps> = ({ children }) => {
@@ -18,13 +17,12 @@ const RootLayout: FC<RootLayoutProps> = ({ children }) => {
   const { currentRoute } = useNavigation()
   const classes = useStyles()
 
-  console.log(currentRoute)
-
   return (
     <html lang="en">
-      <Head>
-        <title>Backoffice | ShapeUp</title>
-      </Head>
+      <head>
+        <title>Backoffice</title>
+        <link rel="shortcut icon" href="/backoffice-shapeup-icon.svg" />
+      </head>
       <Contexts>
         <BackendProviders>
           <Navbar />

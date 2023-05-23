@@ -12,19 +12,21 @@ const Home: FC = () => {
   const classes = useStyles()
 
   return (
-    <Stack sx={{ ...classes.root }}>
-      {ROUTES_VALUES.map(
-        ({ icon, pathname, title }) =>
-          pathname !== ROUTES.get('HOME')?.pathname && (
-            <SectionCard
-              key={title}
-              icon={icon}
-              pathname={pathname}
-              title={title}
-            />
-          )
-      )}
-    </Stack>
+    <>
+      <Stack sx={{ ...classes.root }}>
+        {ROUTES_VALUES.map(
+          ({ icon, pathname, title }) =>
+            pathname !== ROUTES.get('HOME')?.pathname && (
+              <SectionCard
+                key={title}
+                icon={icon}
+                pathname={pathname}
+                title={title}
+              />
+            )
+        )}
+      </Stack>
+    </>
   )
 }
 
