@@ -9,27 +9,32 @@ const routes = {
 }
 
 const apiQuests = {
-  create: async (payload: QuestForm) =>
-    tryCatch(routes.list, {
+  create: async (payload: QuestForm) => {
+    return tryCatch(routes.list, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(payload),
-    }),
-  list: async () => tryCatch(routes.list),
-  remove: async (id: string) =>
-    tryCatch(`${routes.list}/${id}`, {
+    })
+  },
+  list: async () => {
+    return tryCatch(routes.list)
+  },
+  remove: async (id: string) => {
+    return tryCatch(`${routes.list}/${id}`, {
       method: 'DELETE',
-    }),
-  update: async (payload: Quest) =>
-    tryCatch(routes.list, {
+    })
+  },
+  update: async (payload: Quest) => {
+    return tryCatch(routes.list, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(payload),
-    }),
+    })
+  },
 }
 
 export { apiQuests }
