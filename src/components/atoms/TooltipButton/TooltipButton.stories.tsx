@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from '@storybook/react'
+import { Meta } from '@storybook/react'
 
 import AddCircleRoundedIcon from '@mui/icons-material/AddCircleRounded'
 import CircleRoundedIcon from '@mui/icons-material/CircleRounded'
@@ -10,6 +10,7 @@ import SendRoundedIcon from '@mui/icons-material/SendRounded'
 import VisibilityRoundedIcon from '@mui/icons-material/VisibilityRounded'
 
 import { TooltipButton } from './TooltipButton'
+import type { TooltipButtonProps } from './types'
 
 const meta: Meta<typeof TooltipButton> = {
   tags: ['autodocs'],
@@ -51,19 +52,30 @@ const meta: Meta<typeof TooltipButton> = {
 }
 export default meta
 
-type Story = StoryObj<typeof TooltipButton>
-export const Primary: Story = {
-  args: {
-    buttonProps: {
-      sx: {
-        borderColor: 'primary.main',
-        borderStyle: 'solid',
-        borderWidth: 2,
-      },
+export const Sample = (args: TooltipButtonProps) => <TooltipButton {...args} />
+Sample.args = {
+  buttonProps: {
+    sx: {
+      borderColor: 'primary.main',
+      borderStyle: 'solid',
+      borderWidth: 2,
     },
-    children: <AddCircleRoundedIcon color="primary" fontSize="large" />,
-    tooltipProps: {
-      title: 'Tooltip title',
-    },
+  },
+  children: <AddCircleRoundedIcon color="primary" fontSize="large" />,
+  tooltipProps: {
+    title: 'Tooltip title',
+  },
+}
+
+export const Disabled = (args: TooltipButtonProps) => (
+  <TooltipButton {...args} />
+)
+Disabled.args = {
+  buttonProps: {
+    disabled: true,
+  },
+  children: <RemoveCircleRoundedIcon fontSize="large" />,
+  tooltipProps: {
+    title: 'Tooltip disabled title',
   },
 }
