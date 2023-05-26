@@ -21,7 +21,8 @@
     "javascriptreact",
     "typescript",
     "typescriptreact"
-  ], // LANGUAGE FORMATTERS
+  ],
+  // LANGUAGE FORMATTERS
   "javascipt.preferences.importModuleSpecifier": "non-relative",
   "[javascript]": {
     "editor.autoClosingBrackets": "always",
@@ -47,7 +48,8 @@
   },
   "[dotenv]": {
     "editor.defaultFormatter": "foxundermoon.shell-format"
-  }, // CSPELL
+  },
+  // CSPELL
   "cSpell.enabled": true,
   "cSpell.language": "en,pt",
   "cSpell.ignorePaths": [
