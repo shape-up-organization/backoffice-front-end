@@ -23,9 +23,21 @@ export default makeStyles(theme => {
       justifyContent: 'center',
       px: 10,
       py: 3,
+      transition: theme.transitions.create(
+        ['background-color', 'border-color', 'color'],
+        {
+          duration: theme.transitions.duration.standard,
+          easing: theme.transitions.easing.easeInOut,
+        }
+      ),
 
       '&:active, &:focus, &:hover': {
+        backgroundColor: theme.palette.primary.light,
         borderColor: theme.palette.primary.dark,
+
+        '& *': {
+          color: theme.palette.background.default,
+        },
       },
     },
     title: {
