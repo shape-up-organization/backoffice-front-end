@@ -3,13 +3,13 @@ import { FC } from 'react'
 import { StyleProvider } from 'contexts/StyleContext'
 import { Toast } from 'contexts/Toast'
 
-import { ContextsProps } from './types'
+import { FrontendContextsProps } from './types'
 
-const Contexts: FC<ContextsProps> = ({ children }) => (
+const FrontendContexts: FC<FrontendContextsProps> = ({ children }) => (
   <StyleProvider>
     <Toast />
     {children}
   </StyleProvider>
 )
 
-export { Contexts }
+export { FrontendContexts }

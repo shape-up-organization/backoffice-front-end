@@ -6,7 +6,7 @@ import { FC } from 'react'
 import { BackendProviders } from 'api/providers/BackendProviders'
 import { RootLayoutProps } from 'app/types'
 import { Navbar } from 'components/organisms/Navbar'
-import { Contexts } from 'contexts/Contexts'
+import { FrontendContexts } from 'contexts/FrontendContexts'
 import useNavigation from 'hooks/useNavigation'
 import useWindowSizes from 'hooks/useWindowSizes'
 
@@ -23,7 +23,7 @@ const RootLayout: FC<RootLayoutProps> = ({ children }) => {
         <title>Backoffice</title>
         <link rel="shortcut icon" href="/backoffice-shapeup-icon.svg" />
       </head>
-      <Contexts>
+      <FrontendContexts>
         <BackendProviders>
           <Navbar />
           <Stack component="main" sx={{ ...classes.main }}>
@@ -41,7 +41,7 @@ const RootLayout: FC<RootLayoutProps> = ({ children }) => {
             </Stack>
           </Stack>
         </BackendProviders>
-      </Contexts>
+      </FrontendContexts>
     </html>
   )
 }

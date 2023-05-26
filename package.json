@@ -4,7 +4,10 @@
   "private": true,
   "homepage": ".",
   "eslintConfig": {
-    "extends": "./config/.eslintrc"
+    "extends": [
+      "./config/.eslintrc",
+      "plugin:storybook/recommended"
+    ]
   },
   "prettier": "./config/.prettierrc.json",
   "scripts": {
@@ -16,7 +19,9 @@
     "coverage": "vitest run --coverage",
     "ui": "vitest --ui",
     "lint": "next lint",
-    "lint:staged": "lint-staged -c ./config/.lintstagedrc"
+    "lint:staged": "lint-staged -c ./config/.lintstagedrc",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "@emotion/react": "^11.11.0",
@@ -40,6 +45,13 @@
   "devDependencies": {
     "@commitlint/cli": "^17.6.3",
     "@commitlint/config-conventional": "^17.6.3",
+    "@storybook/addon-essentials": "^7.0.18",
+    "@storybook/addon-interactions": "^7.0.18",
+    "@storybook/addon-links": "^7.0.18",
+    "@storybook/blocks": "^7.0.18",
+    "@storybook/nextjs": "^7.0.18",
+    "@storybook/react": "^7.0.18",
+    "@storybook/testing-library": "^0.0.14-next.2",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.0.0",
     "@types/node": "^20.2.4",
@@ -51,10 +63,12 @@
     "eslint-config-next": "^13.4.4",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-storybook": "^0.6.12",
     "husky": "^8.0.3",
     "jsdom": "^22.0.0",
     "lint-staged": "^13.2.2",
     "prettier": "^2.8.8",
+    "storybook": "^7.0.18",
     "vitest": "^0.31.1"
   }
 }
