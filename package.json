@@ -5,8 +5,7 @@
   "homepage": ".",
   "eslintConfig": {
     "extends": [
-      "./config/.eslintrc",
-      "plugin:storybook/recommended"
+      "./config/.eslintrc"
     ]
   },
   "prettier": "./config/.prettierrc.json",
@@ -14,11 +13,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "test": "vitest run",
-    "watch": "vitest watch --ui",
-    "coverage": "vitest run --coverage",
-    "ui": "vitest --ui",
     "lint": "next lint",
+    "test": "vitest --c ./config/vitest.config.ts run",
+    "watch": "vitest --c ./config/vitest.config.ts watch --ui",
+    "coverage": "vitest --c ./config/vitest.config.ts run --coverage",
+    "ui": "vitest --c ./config/vitest.config.ts --ui",
+    "related": "vitest related --c ./config/vitest.config.ts --run",
     "lint:staged": "lint-staged -c ./config/.lintstagedrc",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"

@@ -1,8 +1,8 @@
 {
   "**/*.{js,jsx,ts,tsx}": [
     "eslint",
-    "prettier --config ./config/.prettierrc.json --write",
-    "vitest related --run"
+    "prettier --c ./config/.prettierrc.json --write",
+    "vitest related --c ./config/vitest.config.ts --run"
   ],
   "**/*.{css,scss,md,html,json}": [
     "prettier --config ./config/.prettierrc.json --write"
