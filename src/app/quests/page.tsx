@@ -386,6 +386,7 @@ const Quests: FC = () => {
 
   return (
     <>
+      {/* TABLE VIEW */}
       <Stack sx={{ ...classes.root }}>
         <Stack sx={{ ...classes.rootButtonWrapper }}>
           <Button
@@ -656,61 +657,66 @@ const Quests: FC = () => {
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
+                autoComplete="off"
                 defaultValue={selectedQuest?.name}
                 error={!!errors.name}
                 fullWidth
                 helperText={errors.name?.message}
                 label="Name"
-                variant="filled"
                 sx={{ ...classes.formModalHelperText }}
+                variant="filled"
                 {...register('name')}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
+                autoComplete="off"
                 defaultValue={selectedQuest?.duration}
                 error={!!errors.duration}
                 fullWidth
                 helperText={errors.duration?.message}
                 label="Duration"
-                variant="filled"
                 sx={{ ...classes.formModalHelperText }}
+                variant="filled"
                 {...register('duration')}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
+                autoComplete="off"
                 defaultValue={selectedQuest?.xp}
                 error={!!errors.xp}
                 fullWidth
                 helperText={errors.xp?.message}
                 label="XP"
-                variant="filled"
                 sx={{ ...classes.formModalHelperText }}
+                variant="filled"
                 {...register('xp')}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
+                autoComplete="off"
                 defaultValue={selectedQuest?.unlockXp}
                 error={!!errors.unlockXp}
                 fullWidth
                 helperText={errors.unlockXp?.message}
                 label="XP to unlock"
-                variant="filled"
                 sx={{ ...classes.formModalHelperText }}
+                variant="filled"
                 {...register('unlockXp')}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
+                autoComplete="off"
                 defaultValue={selectedQuest?.description}
                 error={!!errors.description}
                 fullWidth
                 helperText={errors.description?.message}
                 label="Description"
-                variant="filled"
                 sx={{ ...classes.formModalHelperText }}
+                variant="filled"
                 {...register('description')}
               />
             </Grid>
