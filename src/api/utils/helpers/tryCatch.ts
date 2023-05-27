@@ -10,8 +10,7 @@ const tryCatch = async (
   options?: RequestInit
 ): Promise<Response | CustomError> => {
   try {
-    const res = await fetcher(url, options)
-    return res
+    return await fetcher(url, options)
   } catch (error) {
     return {
       status: 500,
