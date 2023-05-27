@@ -1,9 +1,9 @@
 import { ToastOptions, toast } from 'react-toastify'
 
-export type ToastType = 'success' | 'error' | 'warning' | 'info' | 'default'
+export type ToastType = 'default' | 'error' | 'info' | 'success' | 'warning'
 
 export type HandleToastArgs = {
-  message: string
+  message?: string
   type?: ToastType
   options?: ToastOptions
 }
