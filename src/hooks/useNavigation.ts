@@ -1,7 +1,7 @@
 import { notFound, useRouter } from 'next/navigation'
 import { useState } from 'react'
 
-import { ROUTES, Route, RouteMap } from 'utils/constants/routes'
+import { ROUTES, RouteMap } from 'utils/constants/routes'
 import { routing } from 'utils/helpers/routing'
 
 const useNavigation = () => {
@@ -11,13 +11,8 @@ const useNavigation = () => {
     ROUTES.get('HOME')
   )
 
-  const changeRoute = (route: Route | string) => {
-    let newRoute
-    if (typeof route === 'string') {
-      newRoute = routing.getByPathname(route)
-    } else {
-      newRoute = ROUTES.get(route)
-    }
+  const changeRoute = (route: string) => {
+    const newRoute = routing.getByPathname(route)
 
     setCurrentRoute(newRoute)
     document.title = newRoute?.title ? 'Backoffice' : '404'
@@ -26,7 +21,7 @@ const useNavigation = () => {
     if (title) title.innerHTML = newRoute?.title || ''
     if (!newRoute) notFound()
 
-    router.push(newRoute.pathname)
+    router.push(newRoute?.pathname || route)
   }
 
   return { currentRoute, changeRoute }

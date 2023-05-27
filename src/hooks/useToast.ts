@@ -1,6 +1,6 @@
 import { ToastOptions, toast } from 'react-toastify'
 
-export type ToastType = 'success' | 'error' | 'warn' | 'info'
+export type ToastType = 'success' | 'error' | 'warning' | 'info' | 'default'
 
 export type HandleToastArgs = {
   message: string
@@ -9,10 +9,11 @@ export type HandleToastArgs = {
 }
 
 const useToast = () => {
-  const handleToast = ({ message, type, options }: HandleToastArgs) => {
-    const showToast = type && type in toast ? toast[type] : toast
-    showToast(message, options)
-  }
+  const handleToast = ({ message, type, options }: HandleToastArgs) =>
+    toast(message, {
+      ...options,
+      type: type || 'default',
+    })
 
   return { handleToast }
 }
