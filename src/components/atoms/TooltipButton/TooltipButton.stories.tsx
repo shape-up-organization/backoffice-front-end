@@ -19,9 +19,11 @@ const meta: Meta<typeof TooltipButton> = {
   argTypes: {
     buttonProps: {
       control: 'object',
+      defaultValue: { summary: {} },
       description: 'Props for the icon button component',
     },
     children: {
+      defaultValue: { summary: null },
       description: 'Icon to be displayed',
       options: [
         'add',
@@ -43,9 +45,11 @@ const meta: Meta<typeof TooltipButton> = {
         send: <SendRoundedIcon color="primary" fontSize="large" />,
         visibility: <VisibilityRoundedIcon color="primary" fontSize="large" />,
       },
+      type: { name: 'function', required: true },
     },
     tooltipProps: {
       control: 'object',
+      defaultValue: { summary: {} },
       description: 'Props for the tooltip component',
     },
   },
