@@ -133,12 +133,7 @@ const staticColumns: GridColDef[] = [
 ]
 
 const Quests: FC = () => {
-  const {
-    data: quests,
-    isLoading,
-    refetch,
-    isFetching,
-  } = fetchQuests.useQuests()
+  const { data: quests, isLoading, refetch } = fetchQuests.useQuests()
 
   const {
     formState: { errors },
@@ -163,12 +158,15 @@ const Quests: FC = () => {
   const [openExercises, setOpenExercises] = useState(false)
   const [openForm, setOpenForm] = useState(false)
   const [openDelete, setOpenDelete] = useState(false)
+  const [isFetching, setIsFetching] = useState(false)
 
   const { category: categoryHookForm, classification: classificationHookForm } =
     getValues()
 
   const FUNCTIONS = {
     createQuest: async (values: QuestForm) => {
+      setIsFetching(true)
+
       const payload = values
       const res = await fetchQuests.create(payload)
       HANDLERS.handleCloseForm()
@@ -186,8 +184,11 @@ const Quests: FC = () => {
         message: 'Quest created successfully',
         type: 'success',
       })
+      setIsFetching(false)
     },
     editQuest: async (values: QuestForm) => {
+      setIsFetching(true)
+
       const payload: Quest = {
         ...values,
         id: selectedQuest?.id || '',
@@ -209,9 +210,12 @@ const Quests: FC = () => {
         message: 'Quest updated successfully',
         type: 'success',
       })
+      setIsFetching(false)
     },
     deletePack: async () => {
       if (selectedQuest) {
+        setIsFetching(true)
+
         const res = await fetchQuests.remove(selectedQuest.id)
         HANDLERS.handleCloseDelete()
 
@@ -228,6 +232,7 @@ const Quests: FC = () => {
           message: 'Quest removed successfully',
           type: 'success',
         })
+        setIsFetching(false)
       }
     },
     updateExercises: async () => {
@@ -245,7 +250,6 @@ const Quests: FC = () => {
 
         await FUNCTIONS.editQuest(payload)
         HANDLERS.handleCloseExercises()
-        refetch()
       }
     },
   }
@@ -419,12 +423,12 @@ const Quests: FC = () => {
         fullWidth
         maxWidth="md"
         open={openExercises}
-        onClose={HANDLERS.handleCloseExercises}
+        onClose={!isFetching ? HANDLERS.handleCloseExercises : undefined}
       >
         <DialogTitle align="center" component="div">
           <TooltipButton
             buttonProps={{
-              onClick: HANDLERS.handleCloseExercises,
+              onClick: !isFetching ? HANDLERS.handleCloseExercises : undefined,
             }}
             tooltipProps={{
               sx: { ...classes.modalCloseIcon },
@@ -503,12 +507,17 @@ const Quests: FC = () => {
         <DialogActions sx={{ justifyContent: 'center' }}>
           <Button
             color="error"
+            disabled={isFetching}
             onClick={HANDLERS.handleCloseExercises}
             variant="contained"
           >
             Cancel
           </Button>
-          <Button onClick={HANDLERS.handleUpdateExercises} variant="contained">
+          <Button
+            disabled={isFetching}
+            onClick={HANDLERS.handleUpdateExercises}
+            variant="contained"
+          >
             Update
           </Button>
         </DialogActions>
@@ -520,12 +529,12 @@ const Quests: FC = () => {
         fullWidth
         maxWidth="sm"
         open={openDelete}
-        onClose={HANDLERS.handleCloseDelete}
+        onClose={!isFetching ? HANDLERS.handleCloseDelete : undefined}
       >
         <DialogTitle align="center" component="div">
           <TooltipButton
             buttonProps={{
-              onClick: HANDLERS.handleCloseDelete,
+              onClick: !isFetching ? HANDLERS.handleCloseDelete : undefined,
             }}
             tooltipProps={{
               sx: { ...classes.modalCloseIcon },
@@ -562,13 +571,14 @@ const Quests: FC = () => {
         <DialogActions sx={{ justifyContent: 'center' }}>
           <Button
             color="error"
+            disabled={isFetching}
             onClick={HANDLERS.handleCloseDelete}
             variant="contained"
           >
             Cancel
           </Button>
           <Button
-            disabled={!selectedQuest}
+            disabled={!selectedQuest || isFetching}
             onClick={HANDLERS.handleDeletePack}
             variant="contained"
           >
@@ -583,12 +593,12 @@ const Quests: FC = () => {
         fullWidth
         maxWidth="lg"
         open={openForm}
-        onClose={HANDLERS.handleCloseForm}
+        onClose={!isFetching ? HANDLERS.handleCloseForm : undefined}
       >
         <DialogTitle align="center" component="div">
           <TooltipButton
             buttonProps={{
-              onClick: HANDLERS.handleCloseForm,
+              onClick: !isFetching ? HANDLERS.handleCloseForm : undefined,
             }}
             tooltipProps={{
               sx: { ...classes.modalCloseIcon },
@@ -776,13 +786,14 @@ const Quests: FC = () => {
               <Stack sx={{ ...classes.formModalButtonsWrapper }}>
                 <Button
                   color="error"
+                  disabled={isFetching}
                   onClick={HANDLERS.handleCloseForm}
                   variant="contained"
                 >
                   Cancel
                 </Button>
                 <Button
-                  disabled={Object.keys(errors).length > 0}
+                  disabled={Object.keys(errors).length > 0 || isFetching}
                   type="submit"
                   variant="contained"
                 >
