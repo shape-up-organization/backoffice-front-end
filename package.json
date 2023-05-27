@@ -15,7 +15,7 @@
     "start": "next start",
     "lint": "next lint",
     "test": "vitest --c ./config/vitest.config.ts run",
-    "watch": "vitest --c ./config/vitest.config.ts watch --ui",
+    "watch": "vitest --c ./config/vitest.config.ts watch",
     "coverage": "vitest --c ./config/vitest.config.ts run --coverage",
     "ui": "vitest --c ./config/vitest.config.ts --ui",
     "related": "vitest related --c ./config/vitest.config.ts --run",

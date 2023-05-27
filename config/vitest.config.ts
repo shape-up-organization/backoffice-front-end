@@ -1,10 +1,15 @@
+import path from 'path'
+
 import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vitest/config'
 
 export default defineConfig({
   plugins: [react()],
   test: {
-    reporters: ['default'],
+    alias: {
+      contexts: path.resolve(__dirname, '../src/contexts'),
+      utils: path.resolve(__dirname, '../src/utils'),
+    },
     coverage: {
       all: true,
       src: ['src'],
@@ -16,9 +21,11 @@ export default defineConfig({
         '**/constants',
         '**/theme.ts',
         '**/schema.ts',
+        '**/makeStyles.ts',
       ],
     },
     environment: 'jsdom',
+    reporters: ['default'],
     setupFiles: './config/setup.vitest.ts',
   },
 })

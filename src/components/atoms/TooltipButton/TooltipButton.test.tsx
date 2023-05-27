@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest'
 
 import { Disabled, Sample } from './TooltipButton.stories'
 
-describe('TooltipButton', () => {
+describe('Atoms/TooltipButton', () => {
   it('should renders properly', () => {
     render(<Sample {...Sample.args} />)
     const button = screen.getByRole('button')
