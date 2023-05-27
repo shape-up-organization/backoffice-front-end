@@ -20,7 +20,7 @@ describe('Toast', () => {
     vi.clearAllMocks()
   })
 
-  it('renders toast on single button click', async () => {
+  it('should render toast on single button click', async () => {
     render(<Sample type="success" />)
     const successButton = screen.getByRole('button', { name: /TOAST/i })
 
@@ -33,7 +33,7 @@ describe('Toast', () => {
     )
   })
 
-  it('renders toast and fallbacks to inherit', async () => {
+  it('should render toast and fallbacks to inherit', async () => {
     render(<Sample type="default" />)
     const successButton = screen.getByRole('button', { name: /TOAST/i })
 
@@ -48,7 +48,7 @@ describe('Toast', () => {
     expect(successButton).toHaveClass('MuiButton-colorInherit')
   })
 
-  it('renders toast on multiple button click', async () => {
+  it('should render toast on multiple button click', async () => {
     render(<Multiple />)
     const successButton = screen.getByRole('button', { name: /SUCCESS/i })
     userEvent.click(successButton)

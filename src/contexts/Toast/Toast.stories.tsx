@@ -3,7 +3,7 @@ import { Meta } from '@storybook/react'
 import { Button, Stack } from '@mui/material'
 import type { ReactNode } from 'react'
 
-import useToast, { HandleToastArgs, ToastType } from '../../hooks/useToast'
+import useToast, { HandleToastArgs, ToastType } from 'hooks/useToast'
 import { Toast } from './Toast'
 
 const meta: Meta<HandleToastArgs> = {
