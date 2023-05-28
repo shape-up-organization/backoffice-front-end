@@ -4,7 +4,7 @@ import { afterEach, beforeAll, describe, expect, it, vi } from 'vitest'
 
 import { Multiple, Sample } from './Toast.stories'
 
-describe('Toast', () => {
+describe('Contexts/Toast', () => {
   beforeAll(() => {
     vi.mock('next/font/local', () => ({
       __esModule: true,

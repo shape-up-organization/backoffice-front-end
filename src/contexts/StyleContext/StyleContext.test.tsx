@@ -6,7 +6,7 @@ import { tests } from 'utils/helpers/tests'
 import { StyleProvider } from './StyleContext'
 import { Sample } from './StyleContext.stories'
 
-describe('StyleContext', () => {
+describe('Contexts/StyleContext', () => {
   beforeAll(() => {
     vi.mock('next/font/local', () => ({
       __esModule: true,

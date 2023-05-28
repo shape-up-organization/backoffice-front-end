@@ -11,8 +11,7 @@ const Toast: FC = () => (
     autoClose={AUTO_CLOSE}
     closeOnClick
     draggable
-    enableMultiContainer
-    limit={3}
+    limit={2}
     newestOnTop={false}
     pauseOnFocusLoss={false}
     pauseOnHover={false}
