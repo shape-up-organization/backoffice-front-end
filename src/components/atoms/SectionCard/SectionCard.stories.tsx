@@ -38,7 +38,7 @@ export default meta
 
 export const Sample = (args: SectionCardProps) => <SectionCard {...args} />
 Sample.args = {
-  icon: HomeRoundedIcon,
+  icon: CrisisAlertRoundedIcon,
   pathname: '/',
   title: 'ShapeUp',
 }

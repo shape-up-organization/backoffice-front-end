@@ -2,14 +2,11 @@ import { CssBaseline, ThemeProvider as ThemeProviderMUI } from '@mui/material'
 import { motion } from 'framer-motion'
 import { FC, createContext, useContext, useMemo, useState } from 'react'
 
-import { theme } from 'contexts/StyleContext/theme'
-import type {
-  StyleContextType,
-  StyleProviderProps,
-} from 'contexts/StyleContext/types'
 import useWindowSizes from 'hooks/useWindowSizes'
 
 import './globals.scss'
+import { theme } from './theme'
+import type { StyleContextType, StyleProviderProps } from './types'
 
 const StyleContext = createContext<StyleContextType>({
   themeMode: 'light',

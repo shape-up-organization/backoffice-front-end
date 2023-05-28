@@ -7,14 +7,14 @@ import { BackendProviders } from 'api/providers/BackendProviders'
 import { RootLayoutProps } from 'app/types'
 import { Navbar } from 'components/organisms/Navbar'
 import { FrontendContexts } from 'contexts/FrontendContexts'
-import useNavigation from 'hooks/useNavigation'
+import { useJourney } from 'contexts/JourneyContext'
 import useWindowSizes from 'hooks/useWindowSizes'
 
 import useStyles from './RootLayout.styles'
 
 const RootLayout: FC<RootLayoutProps> = ({ children }) => {
   const { isDesktop } = useWindowSizes()
-  const { currentRoute } = useNavigation()
+  const { currentRoute } = useJourney()
   const classes = useStyles()
 
   return (

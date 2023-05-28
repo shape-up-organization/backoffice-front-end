@@ -1,32 +1,15 @@
 import { render, screen } from '@testing-library/react'
-import userEvent from '@testing-library/user-event'
-import { beforeAll, describe, expect, it, vi } from 'vitest'
+import { describe, expect, it } from 'vitest'
 
-import { useRouter } from 'next/navigation'
+import { ROUTES } from 'utils/constants/routes'
 
 import { Sample } from './SectionCard.stories'
 
-describe('Atoms/SectionCard', () => {
-  beforeAll(() => {
-    vi.mock('next/navigation', () => ({
-      useRouter: vi.fn().mockReturnValue({
-        push: vi.fn(),
-      }),
-    }))
-  })
-
+describe('Atoms/SectionCard', async () => {
   it('should renders properly', () => {
     render(<Sample {...Sample.args} />)
     const button = screen.getByRole('button')
 
-    expect(button).toHaveTextContent(Sample.args.title)
-  })
-
-  it('should redirect to the correct path', () => {
-    render(<Sample {...Sample.args} />)
-    const button = screen.getByRole('button')
-
-    userEvent.click(button)
-    expect(useRouter).toHaveBeenCalled()
+    expect(button).toHaveTextContent(ROUTES.get('HOME')?.title + '')
   })
 })

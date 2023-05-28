@@ -1,75 +1,13 @@
-import { render } from '@testing-library/react'
 import { renderHook } from '@testing-library/react-hooks'
-import {
-  afterEach,
-  beforeAll,
-  beforeEach,
-  describe,
-  expect,
-  it,
-  vi,
-} from 'vitest'
+import { beforeAll, beforeEach, describe, expect, it, vi } from 'vitest'
 
-import CrisisAlertRoundedIcon from '@mui/icons-material/CrisisAlertRounded'
 import { useMediaQuery } from '@mui/material'
-import { useRouter } from 'next/navigation'
 import { toast } from 'react-toastify'
 
-import useNavigation from './useNavigation'
 import useToast from './useToast'
 import useWindowSizes from './useWindowSizes'
 
 describe('Hooks', () => {
-  afterEach(() => {
-    vi.clearAllMocks()
-  })
-
-  describe('useNavigation', () => {
-    beforeAll(() => {
-      vi.mock('next/navigation', () => ({
-        useRouter: vi.fn().mockReturnValue({
-          push: vi.fn(),
-        }),
-        notFound: vi.fn(),
-      }))
-    })
-
-    afterEach(() => {
-      vi.clearAllMocks()
-    })
-
-    it('should change the current route', () => {
-      render(<p id="title" />)
-      const { result } = renderHook(() => useNavigation())
-
-      result.current.changeRoute('/quests')
-
-      expect(document.title).toBe('Backoffice')
-      expect(result.current.currentRoute).toEqual({
-        icon: CrisisAlertRoundedIcon,
-        pathname: '/quests',
-        title: 'Quests',
-      })
-      expect(document.querySelector('#title')?.innerHTML).toBe(
-        result.current.currentRoute?.title
-      )
-      expect(useRouter().push).toHaveBeenCalledWith(
-        result.current.currentRoute?.pathname
-      )
-    })
-
-    it('should change to 404 route', () => {
-      render(<p id="title" />)
-      const { result } = renderHook(() => useNavigation())
-
-      result.current.changeRoute('/random-route')
-
-      expect(document.title).toBe('404')
-      expect(document.querySelector('#title')?.innerHTML).toBe('')
-      expect(useRouter().push).toHaveBeenCalledWith('/random-route')
-    })
-  })
-
   describe('useToast', () => {
     beforeAll(() => {
       vi.mock('react-toastify', () => ({
