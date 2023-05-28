@@ -2,6 +2,7 @@ import { ButtonBase, Stack, Typography } from '@mui/material'
 import { FC } from 'react'
 
 import useNavigation from 'hooks/useNavigation'
+
 import useStyles from './SectionCard.styles'
 import { SectionCardProps } from './types'
 

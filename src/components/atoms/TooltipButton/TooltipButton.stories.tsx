@@ -45,7 +45,6 @@ const meta: Meta<typeof TooltipButton> = {
         send: <SendRoundedIcon color="primary" fontSize="large" />,
         visibility: <VisibilityRoundedIcon color="primary" fontSize="large" />,
       },
-      type: { name: 'function', required: true },
     },
     tooltipProps: {
       control: 'object',

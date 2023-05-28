@@ -1,25 +1,10 @@
 import { render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { afterEach, beforeAll, describe, expect, it, vi } from 'vitest'
+import { describe, expect, it } from 'vitest'
 
 import { Multiple, Sample } from './Toast.stories'
 
 describe('Contexts/Toast', () => {
-  beforeAll(() => {
-    vi.mock('next/font/local', () => ({
-      __esModule: true,
-      default: vi.fn().mockReturnValue({
-        style: {
-          fontFamily: 'Ubuntu',
-        },
-      }),
-    }))
-  })
-
-  afterEach(() => {
-    vi.clearAllMocks()
-  })
-
   it('should render toast on single button click', async () => {
     render(<Sample type="success" />)
     const successButton = screen.getByRole('button', { name: /TOAST/i })

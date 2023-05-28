@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react'
-import { beforeAll, describe, expect, it, vi } from 'vitest'
+import { describe, expect, it } from 'vitest'
 
 import { tests } from 'utils/helpers/tests'
 
@@ -7,17 +7,6 @@ import { StyleProvider } from './StyleContext'
 import { Sample } from './StyleContext.stories'
 
 describe('Contexts/StyleContext', () => {
-  beforeAll(() => {
-    vi.mock('next/font/local', () => ({
-      __esModule: true,
-      default: vi.fn().mockReturnValue({
-        style: {
-          fontFamily: 'Ubuntu',
-        },
-      }),
-    }))
-  })
-
   it('should not change theme if not wrapped by provider', () => {
     render(<Sample />)
 
