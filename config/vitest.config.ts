@@ -7,6 +7,7 @@ export default defineConfig({
   plugins: [react()],
   test: {
     alias: {
+      components: path.resolve(__dirname, '../src/components'),
       contexts: path.resolve(__dirname, '../src/contexts'),
       hooks: path.resolve(__dirname, '../src/hooks'),
       utils: path.resolve(__dirname, '../src/utils'),

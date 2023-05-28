@@ -1,20 +1,11 @@
 import { render, screen, waitFor } from '@testing-library/react'
-import { beforeAll, describe, expect, it, vi } from 'vitest'
+import { describe, expect, it } from 'vitest'
 
 import { tests } from 'utils/helpers/tests'
 
 import { Sample } from './FrontendContexts.stories'
 
 describe('Contexts/FrontendContexts', () => {
-  beforeAll(() => {
-    vi.mock('next/navigation', () => ({
-      useRouter: vi.fn().mockReturnValue({
-        push: vi.fn(),
-      }),
-      notFound: vi.fn(),
-    }))
-  })
-
   it('should not change theme if not wrapped by provider', () => {
     render(<Sample />)
 

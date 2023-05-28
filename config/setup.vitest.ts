@@ -13,6 +13,13 @@ beforeAll(() => {
       },
     }),
   }))
+
+  vi.mock('next/navigation', () => ({
+    useRouter: vi.fn().mockReturnValue({
+      push: vi.fn(),
+    }),
+    notFound: vi.fn(),
+  }))
 })
 
 afterEach(() => {
