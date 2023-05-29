@@ -6,6 +6,10 @@ import { defineConfig } from 'vitest/config'
 export default defineConfig({
   plugins: [react()],
   test: {
+    env: {
+      NEXT_PUBLIC_BASE_URL: 'http://localhost:7000/backoffice',
+      LOCAL_URL: 'http://localhost:3000',
+    },
     alias: {
       __mocks__: path.resolve(__dirname, '../src/__mocks__'),
       api: path.resolve(__dirname, '../src/api'),
