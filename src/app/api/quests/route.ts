@@ -4,7 +4,7 @@ import { apiQuests } from 'api/services/quests'
 import type { Quest } from 'api/services/quests/types'
 import type { QuestForm } from 'app/quests/schema'
 
-export async function GET(request: Request) {
+export async function GET() {
   const res = await apiQuests.list()
   return NextResponse.json(res)
 }
