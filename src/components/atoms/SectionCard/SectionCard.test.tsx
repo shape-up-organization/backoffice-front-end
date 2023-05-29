@@ -1,15 +1,24 @@
-import { render, screen } from '@testing-library/react'
-import { describe, expect, it } from 'vitest'
+import { cleanup, render, screen } from '@testing-library/react'
+import { afterEach, beforeEach, describe, expect, it } from 'vitest'
 
 import { ROUTES } from 'utils/constants/routes'
 
 import { Sample } from './SectionCard.stories'
 
-describe('Atoms/SectionCard', async () => {
-  it('should renders properly', () => {
-    render(<Sample {...Sample.args} />)
-    const button = screen.getByRole('button')
+describe('Atoms/SectionCard', () => {
+  describe('Sample', () => {
+    beforeEach(() => {
+      render(<Sample {...Sample.args} />)
+    })
 
-    expect(button).toHaveTextContent(ROUTES.get('HOME')?.title + '')
+    afterEach(() => {
+      cleanup()
+    })
+
+    it('should renders properly', () => {
+      const button = screen.getByRole('button')
+
+      expect(button).toHaveTextContent(ROUTES.get('HOME')?.title + '')
+    })
   })
 })

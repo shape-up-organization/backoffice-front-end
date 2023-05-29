@@ -1,42 +1,48 @@
-import { render, screen, waitFor } from '@testing-library/react'
-import { describe, expect, it } from 'vitest'
+import { cleanup, render, screen, waitFor } from '@testing-library/react'
+import { afterEach, beforeEach, describe, expect, it } from 'vitest'
 
 import { tests } from 'utils/helpers/tests'
 
 import { Sample } from './FrontendContexts.stories'
 
 describe('Contexts/FrontendContexts', () => {
-  it('should not change theme if not wrapped by provider', () => {
-    render(<Sample />)
+  describe('Sample', () => {
+    beforeEach(() => {
+      render(<Sample />)
+    })
 
-    const switchButton = screen.getByRole('checkbox')
-    const themeText = screen.getByText(/light/i)
+    afterEach(() => {
+      cleanup()
+    })
 
-    expect(switchButton).toBeInTheDocument()
-    expect(themeText).toBeInTheDocument()
+    it('should not change theme if not wrapped by provider', () => {
+      const switchButton = screen.getByRole('checkbox')
+      const themeText = screen.getByText(/light/i)
 
-    expect(themeText).toHaveTextContent('light')
-    switchButton.click()
-    expect(themeText).toHaveTextContent('light')
-  })
+      expect(switchButton).toBeInTheDocument()
+      expect(themeText).toBeInTheDocument()
 
-  it('should start with correct theme and change on clicking switch button', async () => {
-    render(<Sample />)
+      expect(themeText).toHaveTextContent('light')
+      switchButton.click()
+      expect(themeText).toHaveTextContent('light')
+    })
 
-    expect(screen.getByText(/light/i)).toHaveTextContent('light')
-    screen.getByRole('checkbox').click()
+    it('should start with correct theme and change on clicking switch button', async () => {
+      expect(screen.getByText(/light/i)).toHaveTextContent('light')
+      screen.getByRole('checkbox').click()
 
-    const body = document.querySelectorAll('body')[1]
-    if (body) {
-      expect(tests.getStyleProperty(body, 'flexDirection')).toStrictEqual(
-        'column'
+      const body = document.querySelectorAll('body')[1]
+      if (body) {
+        expect(tests.getStyleProperty(body, 'flexDirection')).toStrictEqual(
+          'column'
+        )
+      }
+
+      await waitFor(() =>
+        expect(
+          document.querySelector('.Toastify__toast-container')
+        ).toBeInTheDocument()
       )
-    }
-
-    await waitFor(() =>
-      expect(
-        document.querySelector('.Toastify__toast-container')
-      ).toBeInTheDocument()
-    )
+    })
   })
 })
