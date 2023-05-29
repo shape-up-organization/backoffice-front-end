@@ -7,6 +7,7 @@ export default defineConfig({
   plugins: [react()],
   test: {
     alias: {
+      __mocks__: path.resolve(__dirname, '../src/__mocks__'),
       api: path.resolve(__dirname, '../src/api'),
       components: path.resolve(__dirname, '../src/components'),
       contexts: path.resolve(__dirname, '../src/contexts'),
