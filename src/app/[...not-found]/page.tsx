@@ -14,6 +14,7 @@ const NotFound: FC = () => {
   return (
     <Stack sx={{ ...classes.root }}>
       <Typography
+        align="center"
         component="h1"
         role="heading"
         sx={{ ...classes.title }}
@@ -23,8 +24,10 @@ const NotFound: FC = () => {
       </Typography>
       <Image
         alt="Not found image"
+        height={321}
         src={notFoundWithNumber}
         style={{ maxWidth: '100%', objectFit: 'contain' }}
+        width={454}
       />
     </Stack>
   )
