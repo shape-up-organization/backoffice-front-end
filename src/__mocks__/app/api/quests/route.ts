@@ -1,12 +1,13 @@
-export const getMethodResponseMock = [
-  { id: 1, name: 'Quest 1' },
-  { id: 2, name: 'Quest 2' },
-]
+import {
+  createRequestMock,
+  createResponseMock,
+  listResponseMock,
+  updateResponseMock,
+} from '__mocks__/api/services/quests'
 
-export const postRequestMock = Object.freeze({ name: 'New Quest' })
-export const postResponseMock = Object.freeze({ id: 3, name: 'New Quest' })
+export const getMethodResponseMock = listResponseMock
 
-export const putRequestResponseMock = Object.freeze({
-  id: 3,
-  name: 'Updated Quest',
-})
+export const postRequestMock = createRequestMock
+export const postResponseMock = createResponseMock
+
+export const putRequestResponseMock = updateResponseMock

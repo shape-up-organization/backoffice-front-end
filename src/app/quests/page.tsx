@@ -100,7 +100,7 @@ const staticColumns: GridColDef[] = [
   {
     field: 'name',
     headerName: 'Name',
-    minWidth: 80,
+    minWidth: 160,
     flex: 1,
   },
   {
@@ -123,7 +123,7 @@ const staticColumns: GridColDef[] = [
   },
   {
     field: 'duration',
-    headerName: 'Duration (minutes)',
+    headerName: 'Duration',
     description: 'Estimated duration of the quest in minutes',
     align: 'right',
     headerAlign: 'right',
@@ -589,6 +589,7 @@ const Quests: FC = () => {
 
       {/* CREATE/EDIT */}
       <Dialog
+        data-testid="form-modal"
         fullScreen={isMobile}
         fullWidth
         maxWidth="lg"

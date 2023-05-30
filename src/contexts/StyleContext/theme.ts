@@ -48,6 +48,34 @@ export const ubuntu = localFont({
 })
 
 export const theme = createTheme({
+  components: {
+    MuiCssBaseline: {
+      styleOverrides: {
+        body: {
+          scrollbarColor: '#23C7A8 #F1F1F1',
+          '&::-webkit-scrollbar, & *::-webkit-scrollbar': {
+            backgroundColor: '#F1F1F1',
+            width: 12,
+          },
+          '&::-webkit-scrollbar-thumb, & *::-webkit-scrollbar-thumb': {
+            backgroundColor: '#23C7A8',
+            borderColor: '#F1F1F1',
+            borderRadius: 8,
+            borderStyle: 'solid',
+            borderWidth: 2,
+            minHeight: 24,
+          },
+          '&::-webkit-scrollbar-thumb:focus, & *::-webkit-scrollbar-thumb:focus, &::-webkit-scrollbar-thumb:active, & *::-webkit-scrollbar-thumb:active, &::-webkit-scrollbar-thumb:hover, & *::-webkit-scrollbar-thumb:hover':
+            {
+              backgroundColor: '#25D6B6',
+            },
+          '&::-webkit-scrollbar-corner, & *::-webkit-scrollbar-corner': {
+            backgroundColor: '#F1F1F1',
+          },
+        },
+      },
+    },
+  },
   palette: {
     mode: 'light',
     background: {
