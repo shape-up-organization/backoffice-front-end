@@ -3,6 +3,9 @@ import { FC } from 'react'
 
 import { TooltipButtonProps } from './types'
 
+/**
+ * Tooltip and IconButton combined
+ */
 const TooltipButton: FC<TooltipButtonProps> = ({
   buttonProps,
   children,

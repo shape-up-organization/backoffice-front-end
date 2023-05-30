@@ -11,15 +11,16 @@ const Toast: FC = () => (
     autoClose={AUTO_CLOSE}
     closeOnClick
     draggable
-    hideProgressBar={false}
-    limit={1}
+    limit={2}
     newestOnTop={false}
+    pauseOnFocusLoss={false}
+    pauseOnHover={false}
     position="bottom-left"
     rtl={false}
-    theme="colored"
     style={{
       fontFamily: ubuntu.style.fontFamily,
     }}
+    theme="colored"
   />
 )
 

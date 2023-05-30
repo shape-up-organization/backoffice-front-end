@@ -1,0 +1,10 @@
+{
+  "**/*.{js,jsx,ts,tsx}": [
+    "eslint",
+    "prettier --c ./config/.prettierrc.json --write",
+    "vitest related --c ./config/vitest.config.ts --run --silent"
+  ],
+  "**/*.{css,scss,md,html,json}": [
+    "prettier --config ./config/.prettierrc.json --write"
+  ]
+}

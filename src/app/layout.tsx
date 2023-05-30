@@ -6,15 +6,15 @@ import { FC } from 'react'
 import { BackendProviders } from 'api/providers/BackendProviders'
 import { RootLayoutProps } from 'app/types'
 import { Navbar } from 'components/organisms/Navbar'
-import { Contexts } from 'contexts/Contexts'
-import useNavigation from 'hooks/useNavigation'
+import { FrontendContexts } from 'contexts/FrontendContexts'
+import { useJourney } from 'contexts/JourneyContext'
 import useWindowSizes from 'hooks/useWindowSizes'
 
 import useStyles from './RootLayout.styles'
 
 const RootLayout: FC<RootLayoutProps> = ({ children }) => {
   const { isDesktop } = useWindowSizes()
-  const { currentRoute } = useNavigation()
+  const { currentRoute } = useJourney()
   const classes = useStyles()
 
   return (
@@ -23,7 +23,7 @@ const RootLayout: FC<RootLayoutProps> = ({ children }) => {
         <title>Backoffice</title>
         <link rel="shortcut icon" href="/backoffice-shapeup-icon.svg" />
       </head>
-      <Contexts>
+      <FrontendContexts>
         <BackendProviders>
           <Navbar />
           <Stack component="main" sx={{ ...classes.main }}>
@@ -41,7 +41,7 @@ const RootLayout: FC<RootLayoutProps> = ({ children }) => {
             </Stack>
           </Stack>
         </BackendProviders>
-      </Contexts>
+      </FrontendContexts>
     </html>
   )
 }

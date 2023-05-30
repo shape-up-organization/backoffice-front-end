@@ -1,9 +1,8 @@
 import { Stack, Tab, Tabs } from '@mui/material'
-import { usePathname } from 'next/navigation'
 import { FC, useEffect, useMemo, useState } from 'react'
 
 import { TooltipButton } from 'components/atoms/TooltipButton'
-import useNavigation from 'hooks/useNavigation'
+import { useJourney } from 'contexts/JourneyContext'
 import useWindowSizes from 'hooks/useWindowSizes'
 import { ROUTES, ROUTES_VALUES } from 'utils/constants/routes'
 import { routing } from 'utils/helpers/routing'
@@ -11,9 +10,7 @@ import { routing } from 'utils/helpers/routing'
 import useStyles from './Navbar.styles'
 
 const Navbar: FC = () => {
-  const currentPathname = usePathname()
-
-  const { changeRoute, currentRoute } = useNavigation()
+  const { changeRoute, currentRoute } = useJourney()
   const { isDesktop } = useWindowSizes()
   const classes = useStyles()
 
@@ -28,10 +25,10 @@ const Navbar: FC = () => {
 
   useEffect(() => {
     HANDLERS.handleChangeTab(
-      routing.getByPathname(currentPathname)?.pathname ||
+      routing.getByPathname(currentRoute?.pathname)?.pathname ||
         ROUTES.get('HOME')?.pathname
     )
-  }, [HANDLERS, currentPathname])
+  }, [currentRoute?.pathname])
 
   return (
     <Stack component="nav" sx={{ ...classes.root }}>
@@ -52,14 +49,11 @@ const Navbar: FC = () => {
               <TooltipButton
                 key={title}
                 buttonProps={{
-                  onClick: () => {
-                    HANDLERS.handleChangeTab(pathname)
-                    changeRoute(pathname)
-                  },
+                  onClick: () => changeRoute(pathname),
                   'aria-current':
-                    pathname === currentPathname ? 'page' : undefined,
+                    pathname === currentRoute?.pathname ? 'page' : undefined,
                   'aria-label': title,
-                  'aria-selected': pathname === currentPathname,
+                  'aria-selected': pathname === currentRoute?.pathname,
                 }}
                 tooltipProps={{
                   'aria-valuetext': title,
@@ -69,7 +63,9 @@ const Navbar: FC = () => {
                 }}
               >
                 <Icon
-                  color={pathname === currentPathname ? 'primary' : 'inherit'}
+                  color={
+                    pathname === currentRoute?.pathname ? 'primary' : 'inherit'
+                  }
                   sx={{ ...classes.icon }}
                 />
               </TooltipButton>

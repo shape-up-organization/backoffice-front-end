@@ -6,7 +6,7 @@ export interface Style extends Theme {
 }
 
 export type StyleContextType = {
-  themeMode: string
+  themeMode: 'light' | 'dark'
   toggleTheme: () => void
 }
 

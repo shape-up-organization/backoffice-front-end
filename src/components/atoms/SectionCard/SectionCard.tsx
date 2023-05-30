@@ -1,12 +1,13 @@
 import { ButtonBase, Stack, Typography } from '@mui/material'
 import { FC } from 'react'
 
-import useNavigation from 'hooks/useNavigation'
+import { useJourney } from 'contexts/JourneyContext'
+
 import useStyles from './SectionCard.styles'
 import { SectionCardProps } from './types'
 
 const SectionCard: FC<SectionCardProps> = ({ icon: Icon, pathname, title }) => {
-  const { changeRoute } = useNavigation()
+  const { changeRoute } = useJourney()
   const classes = useStyles()
 
   const FUNCTIONS = {
